@@ -6,8 +6,8 @@ import android.util.Log;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
-import com.tongju.common.ApplicationImpl;
-import com.tongju.common.BaseApplication;
+import com.example.common.base.ApplicationImpl;
+import com.example.common.base.BaseApplication;
 
 /**
  * Created by zhangyinlei on 2018/4/18 18:26

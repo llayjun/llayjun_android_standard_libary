@@ -23,6 +23,7 @@ import com.uuzuche.lib_zxing.R;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.decoding.CaptureActivityHandler;
 import com.uuzuche.lib_zxing.decoding.InactivityTimer;
+import com.uuzuche.lib_zxing.util.CodeUtils;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
     private boolean vibrate;
     private SurfaceView surfaceView;
     private SurfaceHolder surfaceHolder;
-    private com.uuzuche.lib_zxing.activity.CodeUtils.AnalyzeCallback analyzeCallback;
+    private CodeUtils.AnalyzeCallback analyzeCallback;
     private Camera camera;
 
     @Override
@@ -66,7 +67,7 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
         Bundle bundle = getArguments();
         View view = null;
         if (bundle != null) {
-            int layoutId = bundle.getInt(com.uuzuche.lib_zxing.activity.CodeUtils.LAYOUT_ID);
+            int layoutId = bundle.getInt(CodeUtils.LAYOUT_ID);
             if (layoutId != -1) {
                 view = inflater.inflate(layoutId, null);
             }
@@ -245,11 +246,11 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
         }
     };
 
-    public com.uuzuche.lib_zxing.activity.CodeUtils.AnalyzeCallback getAnalyzeCallback() {
+    public CodeUtils.AnalyzeCallback getAnalyzeCallback() {
         return analyzeCallback;
     }
 
-    public void setAnalyzeCallback(com.uuzuche.lib_zxing.activity.CodeUtils.AnalyzeCallback analyzeCallback) {
+    public void setAnalyzeCallback(CodeUtils.AnalyzeCallback analyzeCallback) {
         this.analyzeCallback = analyzeCallback;
     }
 

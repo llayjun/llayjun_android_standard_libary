@@ -1,6 +1,5 @@
 package com.example.common.activity;
 
-import android.Manifest;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +10,8 @@ import com.example.common.R;
 import com.example.common.RouterCommonPath;
 import com.example.common.base.BaseActivity;
 import com.example.common.base.BasePresenter;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.fragment.CaptureFragment;
-
-import io.reactivex.functions.Consumer;
+import com.uuzuche.lib_zxing.util.CodeUtils;
 
 @Route(path = RouterCommonPath.ROUTER_SCAN)
 public class ScanCodeActivity extends BaseActivity implements View.OnClickListener {
@@ -40,7 +36,7 @@ public class ScanCodeActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    com.uuzuche.lib_zxing.activity.CodeUtils.AnalyzeCallback analyzeCallback = new com.uuzuche.lib_zxing.activity.CodeUtils.AnalyzeCallback() {
+    CodeUtils.AnalyzeCallback analyzeCallback = new CodeUtils.AnalyzeCallback() {
         @Override
         public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
             Toast.makeText(ScanCodeActivity.this, result, Toast.LENGTH_LONG).show();

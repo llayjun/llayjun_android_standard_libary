@@ -6,10 +6,7 @@ import android.widget.Toast;
 
 import com.alibaba.sdk.android.push.MessageReceiver;
 import com.alibaba.sdk.android.push.notification.CPushMessage;
-import com.tongju.common.message.MGetBitmap;
-import com.tongju.common.message.MMessageNotify;
 
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.Map;
 
@@ -27,7 +24,6 @@ public class MyMessageReceiver extends MessageReceiver {
     @Override
     public void onMessage(Context context, CPushMessage cPushMessage) {
         Log.e("MyMessageReceiver", "onMessage, messageId: " + cPushMessage.getMessageId() + ", title: " + cPushMessage.getTitle() + ", content:" + cPushMessage.getContent());
-        EventBus.getDefault().post(new MMessageNotify(cPushMessage.getTitle()));
         CustomNotificationUtil.buildNotification(context, cPushMessage);
     }
 

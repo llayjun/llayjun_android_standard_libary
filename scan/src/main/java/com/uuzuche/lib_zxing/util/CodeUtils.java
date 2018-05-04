@@ -1,4 +1,4 @@
-package com.uuzuche.lib_zxing.activity;
+package com.uuzuche.lib_zxing.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
