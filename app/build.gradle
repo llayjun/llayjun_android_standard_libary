@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.common.androidutils"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        multiDexEnabled true //65535
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default"]//3.0 resid bug
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+repositories {
+    maven {
+        url "http://mvn.mob.com/android"
+    }
+}
+
+dependencies {
+    implementation project(':same')
+    if (!isModule.toBoolean()) {
+        implementation project(':main')
+        implementation project(':first')
+        implementation project(':second')
+        implementation project(':third')
+        implementation project(':fourth')
+    }
+}

@@ -1,0 +1,39 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tongju.push">
+
+    <application>
+        <meta-data
+            android:name="com.alibaba.app.appkey"
+            android:value="24859433" /> <!-- 请填写你自己的- appKey -->
+        <meta-data
+            android:name="com.alibaba.app.appsecret"
+            android:value="fb252719b397f959d09794ff07a029f0" /> <!-- 请填写你自己的appSecret -->
+
+        <!-- 消息接收监听器 （用户可自主扩展） -->
+        <receiver
+            android:name=".MyMessageReceiver"
+            android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.push.click.action" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.push.click.delete.action" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

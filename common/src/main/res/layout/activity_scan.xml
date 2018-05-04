@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fl_my_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.example.common.view.RTextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x70"
+        android:layout_below="@+id/fl_my_container"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y1300"
+        android:drawablePadding="@dimen/x13"
+        android:gravity="center_vertical"
+        android:text="请将二维码放入框内，即可自动扫描"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y1422"
+        android:text="特别提醒：请您注意扫码后的结果是否一致"
+        android:textColor="#ffffff"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+</FrameLayout>

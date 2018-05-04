@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        multiDexEnabled true //65535
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default"]//3.0 resid bug
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //android support
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.supportLibVersion"
+    implementation files('libs/core_3.0.1.jar')
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'cn.yipianfengye.android'
+    PUBLISH_ARTIFACT_ID = 'zxing-library'
+    PUBLISH_VERSION = '2.2'
+}
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

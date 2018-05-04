@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.mob.sdk'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // 在MobSDK的扩展中注册ShareSDK的相关信息
+    MobSDK {
+        appKey "246d29e822f91"
+        appSecret "6c18b694b5b62ca989108b4f09f3cdd0"
+
+        ShareSDK {
+            devInfo {
+                SinaWeibo {
+                    appKey "568898243"
+                    appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                    callbackUri "http://www.sharesdk.cn"
+                    shareByAppClient true
+                    enable true
+                }
+                Wechat {
+                    appId "wx4868b35061f87885"
+                    appSecret "64020361b8ec4c99936c0e3999a9f249"
+                    bypassApproval true
+                    enable true
+                }
+                WechatMoments {
+                    appId "wx4868b35061f87885"
+                    appSecret "64020361b8ec4c99936c0e3999a9f249"
+                    bypassApproval true
+                    enable true
+                }
+                QQ {
+                    appId "100371282"
+                    appKey "aed9b0303e3ed1e27bae87c33761161d"
+                    bypassApproval false
+                    shareByAppClient true
+                    enable true
+                }
+                QZone {
+                    appId "100371282"
+                    appKey "aed9b0303e3ed1e27bae87c33761161d"
+                    bypassApproval true
+                    enable true
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
