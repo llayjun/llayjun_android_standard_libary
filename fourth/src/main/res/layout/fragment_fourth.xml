@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <Button
+        android:id="@+id/button_alipay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="第四个Fragment" />
+        android:layout_height="wrap_content"
+        android:text="支付宝支付" />
 
 </LinearLayout>
