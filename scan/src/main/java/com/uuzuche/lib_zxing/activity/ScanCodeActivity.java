@@ -1,4 +1,4 @@
-package com.example.common.activity;
+package com.uuzuche.lib_zxing.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.common.R;
 import com.example.common.RouterCommonPath;
 import com.example.common.base.BaseActivity;
 import com.example.common.base.BasePresenter;
+import com.uuzuche.lib_zxing.R;
 import com.uuzuche.lib_zxing.fragment.CaptureFragment;
 import com.uuzuche.lib_zxing.util.CodeUtils;
 

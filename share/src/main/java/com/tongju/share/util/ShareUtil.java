@@ -2,6 +2,8 @@ package com.tongju.share.util;
 
 import android.content.Context;
 
+import com.mob.MobSDK;
+
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**

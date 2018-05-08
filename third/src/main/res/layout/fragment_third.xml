@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <Button
+        android:id="@+id/button_push"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="第三个Fragment" />
+        android:layout_height="wrap_content"
+        android:text="aliyun推送" />
 
 </LinearLayout>

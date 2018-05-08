@@ -13,6 +13,7 @@ import com.standard.llayjun.same.RouterSamePath;
 import com.standard.second.R;
 import com.standard.second.presenter.ISecondPresenter;
 import com.standard.second.presenter.SecondPresenter;
+import com.tongju.share.util.ShareUtil;
 
 @Route(path = RouterSamePath.SECOND_FRAGMENT)
 public class SecondFragment extends BaseFragment<SecondPresenter> implements ISecondPresenter.ISecondView {
@@ -25,7 +26,12 @@ public class SecondFragment extends BaseFragment<SecondPresenter> implements ISe
 
     @Override
     protected void findViews(View view) {
-
+        view.findViewById(R.id.button_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareUtil.showShare(activity);
+            }
+        });
     }
 
     @Override

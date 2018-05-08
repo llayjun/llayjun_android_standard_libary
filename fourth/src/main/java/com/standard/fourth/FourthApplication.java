@@ -1,9 +1,9 @@
-package com.standard.first;
+package com.standard.fourth;
 
 import com.example.common.base.ApplicationImpl;
 import com.example.common.base.BaseApplication;
 
-public class FirstApplication implements ApplicationImpl {
+public class FourthApplication implements ApplicationImpl {
 
     @Override
     public void onCreate(BaseApplication baseApplication) {

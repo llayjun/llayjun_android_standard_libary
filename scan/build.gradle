@@ -10,6 +10,11 @@ android {
         multiDexEnabled true //65535
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default"]//3.0 resid bug
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -34,6 +39,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibVersion"
     implementation files('libs/core_3.0.1.jar')
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    implementation project(':same')
 }
 
 ext {

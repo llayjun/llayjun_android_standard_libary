@@ -18,15 +18,11 @@ import com.standard.first.presenter.FirstPresenter;
 import com.standard.first.presenter.IFirstPresenter;
 import com.standard.llayjun.same.RouterSamePath;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.tongju.share.util.ShareUtil;
 
 import io.reactivex.functions.Consumer;
 
 @Route(path = RouterSamePath.FIRST_FRAGMENT)
 public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirstPresenter.IFirstView, View.OnClickListener {
-
-    private Button mScanButton;
-    private Button mShareButton;
 
     @Nullable
     @Override
@@ -36,10 +32,7 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
 
     @Override
     protected void findViews(View view) {
-        mScanButton = view.findViewById(R.id.button_scan);
-        mScanButton.setOnClickListener(this);
-        mShareButton = view.findViewById(R.id.button_share);
-        mShareButton.setOnClickListener(this);
+        view.findViewById(R.id.button_scan).setOnClickListener(this);
     }
 
     @Override
@@ -55,8 +48,6 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
                     }
                 }
             });
-        } else if (id == R.id.button_share) {
-            ShareUtil.showShare(activity);
         }
     }
 

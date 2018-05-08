@@ -2,6 +2,7 @@ if (isModule.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
+    apply plugin: 'com.mob.sdk'
 }
 
 android {
@@ -49,11 +50,19 @@ android {
 
 }
 
+repositories {
+    maven {
+        url "http://mvn.mob.com/android"
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation project(':same')
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    implementation project(':same')
+    // mob share
+    implementation project(':share')
 }
