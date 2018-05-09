@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alipay.sdk.app.EnvUtils;
 import com.example.common.base.BaseFragment;
 import com.standard.fourth.R;
 import com.standard.fourth.presenter.FourthPresenter;
@@ -18,6 +19,12 @@ import com.tongju.pay.aliay.AlipayUtil;
 
 @Route(path = RouterSamePath.FOURTH_FRAGMENT)
 public class FourthFragment extends BaseFragment<FourthPresenter> implements IFourthPresenter.IFourthView {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
