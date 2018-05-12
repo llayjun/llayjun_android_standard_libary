@@ -7,12 +7,15 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.common.RouterCommonPath;
 import com.example.common.base.BaseFragment;
+import com.example.common.dialog.ConfirmDialog;
+import com.example.common.dialog.ConfirmDialogFragment;
+import com.example.common.listener.OnNegativeClickListener;
+import com.example.common.listener.OnPositiveClickListener;
 import com.standard.first.R;
 import com.standard.first.presenter.FirstPresenter;
 import com.standard.first.presenter.IFirstPresenter;
@@ -33,6 +36,7 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
     @Override
     protected void findViews(View view) {
         view.findViewById(R.id.button_scan).setOnClickListener(this);
+        view.findViewById(R.id.button_dialog).setOnClickListener(this);
     }
 
     @Override
@@ -48,6 +52,26 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
                     }
                 }
             });
+        } else if (id == R.id.button_dialog) {
+            new ConfirmDialogFragment()
+                    .setTitle("该项目有更新，请及时更新")
+                    .setConfirmClick("确定", new OnPositiveClickListener() {
+                        @Override
+                        public void onPositiveClick(View view, String content) {
+
+                        }
+                    })
+                    .show(getChildFragmentManager(), "");
+//            new ConfirmDialog.Builder(activity)
+//                    .setTitle("该项目有更新，请及时更新")
+//                    .setConfirmClick("确定", new OnPositiveClickListener() {
+//                        @Override
+//                        public void onPositiveClick(View view, String content) {
+//
+//                        }
+//                    })
+//                    .create()
+//                    .show();
         }
     }
 
