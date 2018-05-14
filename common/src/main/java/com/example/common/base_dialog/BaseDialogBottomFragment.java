@@ -19,7 +19,7 @@ import android.view.WindowManager;
 import com.example.common.R;
 
 /**
- * DialogFragment 的基类
+ * DialogBottomFragment 的基类，从底部弹出来
  */
 public abstract class BaseDialogBottomFragment extends DialogFragment {
     /* 默认的背景透明度 */

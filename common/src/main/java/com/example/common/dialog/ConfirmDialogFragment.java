@@ -9,6 +9,10 @@ import com.example.common.base_dialog.BaseDialogFragment;
 import com.example.common.listener.OnNegativeClickListener;
 import com.example.common.listener.OnPositiveClickListener;
 
+
+/**
+ * 确认和取消弹框功能dialog
+ */
 public class ConfirmDialogFragment extends BaseDialogFragment {
 
     private String title, content, cancelText, confirmText;

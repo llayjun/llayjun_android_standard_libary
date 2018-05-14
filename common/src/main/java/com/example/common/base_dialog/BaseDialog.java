@@ -11,7 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * DialogFragment 的基类
+ * Dialog 的基类
  */
 public class BaseDialog extends Dialog {
     private final float DEF_SHOW_ALPHA = 0.5f;
