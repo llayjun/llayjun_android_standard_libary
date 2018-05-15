@@ -11,6 +11,8 @@ android {
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default"]//3.0 resid bug
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        buildConfigField("String", "http", "\"http://192.168.1.5:22014/\"")
+
         //arouter
         javaCompileOptions {
             annotationProcessorOptions {
@@ -43,7 +45,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -63,6 +65,7 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.3.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.3.0'
     api 'com.squareup.okhttp3:okhttp:3.8.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     // permissions
@@ -74,4 +77,8 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     // recycle adapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    // eventsbus
+    api 'org.greenrobot:eventbus:3.1.1'
+    // zxing
+    api files('libs/core-3.2.1.jar')
 }

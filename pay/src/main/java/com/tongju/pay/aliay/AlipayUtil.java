@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
-import com.example.common.utils.HandlerUtil;
+import com.example.common.utils.MainHandlerUtil;
 import com.tongju.pay.aliay.util.OrderInfoUtil2_0;
 
 import java.util.Map;
@@ -63,7 +63,7 @@ public class AlipayUtil {
                 // 同步返回需要验证的信息
                 PayResult payResult = new PayResult(result);
                 // 对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
-                HandlerUtil.getMainHandler().post(new Runnable() {
+                MainHandlerUtil.getMainHandler().post(new Runnable() {
                     @Override
                     public void run() {
                         String resultInfo = payResult.getResult();
