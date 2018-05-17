@@ -1,4 +1,4 @@
-package com.example.common.sutils.utils;
+package com.example.common.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;

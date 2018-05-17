@@ -1,4 +1,4 @@
-package com.example.common.base_dialog;
+package com.example.common.dialog.base_dialog;
 
 import android.app.Activity;
 import android.app.Dialog;

@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.common.R;
-import com.example.common.base_dialog.BaseDialogFragment;
+import com.example.common.dialog.base_dialog.BaseDialogFragment;
 import com.example.common.listener.OnNegativeClickListener;
 import com.example.common.listener.OnPositiveClickListener;
 
@@ -25,7 +25,7 @@ public class ConfirmDialogFragment extends BaseDialogFragment {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.dialog_confirm;
+        return R.layout.view_dialog_confirm;
     }
 
     public String getTitle() {

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.common.R;
-import com.example.common.base_dialog.BaseDialog;
+import com.example.common.dialog.base_dialog.BaseDialog;
 
 /**
  * 普通的dialog，可直接显示view

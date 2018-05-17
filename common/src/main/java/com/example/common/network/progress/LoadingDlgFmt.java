@@ -1,7 +1,5 @@
 package com.example.common.network.progress;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.common.R;
-import com.example.common.base_dialog.BaseDialogFragment;
+import com.example.common.dialog.base_dialog.BaseDialogFragment;
 
 
 /**
@@ -34,7 +32,7 @@ public class LoadingDlgFmt extends BaseDialogFragment {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.lib_dlgfmt_loading;
+        return R.layout.view_dialog_loading;
     }
 
     @Override

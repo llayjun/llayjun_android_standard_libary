@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.common.R;
-import com.example.common.base_dialog.BaseDialog;
+import com.example.common.dialog.base_dialog.BaseDialog;
 import com.example.common.listener.OnNegativeClickListener;
 import com.example.common.listener.OnPositiveClickListener;
 
@@ -69,7 +69,7 @@ public class ConfirmDialog extends BaseDialog {
         }
 
         public ConfirmDialog create() {
-            View view = LayoutInflater.from(context).inflate(R.layout.dialog_confirm, null);
+            View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_confirm, null);
             TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
             TextView tvContent = (TextView) view.findViewById(R.id.tv_content);
             TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);

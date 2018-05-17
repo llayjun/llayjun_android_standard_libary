@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
-import com.example.common.utils.MainHandlerUtil;
+import com.example.common.sutils.utils.MainHandlerUtil;
 import com.tongju.pay.aliay.util.OrderInfoUtil2_0;
 
 import java.util.Map;

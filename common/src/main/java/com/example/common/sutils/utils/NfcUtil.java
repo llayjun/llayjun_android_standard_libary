@@ -47,7 +47,7 @@ public class NfcUtil {
      * @return {@code true}: 支持<br>{@code false}: 不支持
      */
     public boolean isSupportNfc() {
-        return mAdapter != null ? true : false;
+        return mAdapter != null;
     }
 
     /**

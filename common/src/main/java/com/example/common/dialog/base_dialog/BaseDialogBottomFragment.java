@@ -1,4 +1,4 @@
-package com.example.common.base_dialog;
+package com.example.common.dialog.base_dialog;
 
 
 import android.app.Dialog;
@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,9 @@ import android.view.WindowManager;
 import com.example.common.R;
 
 /**
- * DialogFragment 的基类
+ * DialogBottomFragment 的基类，从底部弹出来
  */
-public abstract class BaseDialogFragment extends DialogFragment {
+public abstract class BaseDialogBottomFragment extends DialogFragment {
     /* 默认的背景透明度 */
     private final float DEF_VISIBLE_ALPHA = 0.5f;
     /* 是否使用 dialog 的百分比尺寸 */
@@ -51,7 +52,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogNoTitleStyle);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialogFragment);
     }
 
     @Nullable
@@ -153,6 +154,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.dimAmount = bgAlpha;
         lp.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        lp.gravity = Gravity.BOTTOM;
         window.setAttributes(lp);
     }
 }

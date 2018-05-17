@@ -1,9 +1,9 @@
-package com.standard.llayjun.network;
+package com.standard.llayjun.same.network;
 
 
 import com.example.common.BuildConfig;
 import com.example.common.network.retrofit.HttpUtil;
-import com.standard.llayjun.ApiService;
+import com.standard.llayjun.same.ApiService;
 
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
