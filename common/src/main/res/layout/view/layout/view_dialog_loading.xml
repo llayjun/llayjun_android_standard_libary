@@ -16,7 +16,7 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
 
-        <com.example.common.view.CircleProgressBar
+        <com.example.common.widget.view.CircleProgressBar
             android:id="@+id/proBar_loading"
             android:layout_width="40dp"
             android:layout_height="40dp"

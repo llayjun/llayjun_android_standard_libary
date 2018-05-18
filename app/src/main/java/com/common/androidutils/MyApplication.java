@@ -1,6 +1,10 @@
 package com.common.androidutils;
 
 import com.example.common.base.BaseApplication;
+import com.standard.first.FirstApplication;
+import com.standard.fourth.FourthApplication;
+import com.standard.second.SecondApplication;
+import com.standard.third.ThirdApplication;
 
 public class MyApplication extends BaseApplication {
 
@@ -9,7 +13,7 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         if (!BuildConfig.DEBUG) {
-            FirstApplication firstApplication = new FirstAppication();
+            FirstApplication firstApplication = new FirstApplication();
             firstApplication.onCreate(this);
             SecondApplication secondApplication = new SecondApplication();
             secondApplication.onCreate(this);

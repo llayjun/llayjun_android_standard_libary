@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.common.view;
+package com.example.common.widget.view;
 
 import android.content.Context;
 import android.content.res.Resources;

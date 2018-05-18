@@ -29,11 +29,27 @@ android {
         debug {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            '/src/main/res/layout/activity',
+                            '/src/main/res/layout/fragment',
+                            '/src/main/res/layout/item',
+                            '/src/main/res/layout/view',
+                            '/src/main/res/layout/other',
+                            '/src/main/res/layout',
+                            '/src/main/res'
+                    ]
+        }
     }
 
 }
@@ -73,7 +89,9 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:3.8.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     // glide
-    api 'com.github.bumptech.glide:glide:4.7.1'
+    api('com.github.bumptech.glide:glide:4.7.1') {
+        exclude group: "com.android.support"
+    }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     // permissions
     api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'

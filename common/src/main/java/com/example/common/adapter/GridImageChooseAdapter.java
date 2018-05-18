@@ -20,6 +20,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 
 /**
+ * 图片选择后的Grid显示
  * Created by zhangyinlei on 2018/3/2 0002.
  */
 
@@ -61,6 +62,15 @@ public class GridImageChooseAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 itemViewHolderAdd.tvNum.setText(position + "/" + mMaxAlbum);
                 itemViewHolderAdd.itemView.setVisibility(View.VISIBLE);
                 itemView = ((ItemViewHolderAdd) holder).itemView;
+                //添加图片功能
+                if (mOnItemClickListener != null && null != itemView) {
+                    itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnItemClickListener.onPickImageClick();
+                        }
+                    });
+                }
             }
         } else if (holder instanceof ItemViewHolderCommon) {
             String url = mStringList.get(position);
@@ -69,12 +79,21 @@ public class GridImageChooseAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     .transition(withCrossFade())
                     .into(((ItemViewHolderCommon) holder).ivCommon);
             itemView = ((ItemViewHolderCommon) holder).itemView;
-        }
-        if (mOnItemClickListener != null && null != itemView) {
-            itemView.setOnClickListener(new View.OnClickListener() {
+            //图片查看功能
+            if (mOnItemClickListener != null && null != itemView) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnItemClickListener.onCommonItemClick(holder.itemView, position);
+                    }
+                });
+            }
+            //删除功能
+            ((ItemViewHolderCommon) holder).ivRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(holder.itemView, position);
+                    mStringList.remove(position);
+                    notifyDataSetChanged();
                 }
             });
         }
@@ -101,10 +120,12 @@ public class GridImageChooseAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public static class ItemViewHolderCommon extends RecyclerView.ViewHolder {
         private ImageView ivCommon;
+        private ImageView ivRemove;
 
         public ItemViewHolderCommon(View itemView) {
             super(itemView);
             ivCommon = itemView.findViewById(R.id.iv_album_selected);
+            ivRemove = itemView.findViewById(R.id.iv_remove);
         }
     }
 
@@ -115,7 +136,9 @@ public class GridImageChooseAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onCommonItemClick(View view, int position);
+
+        void onPickImageClick();
     }
 
 }
