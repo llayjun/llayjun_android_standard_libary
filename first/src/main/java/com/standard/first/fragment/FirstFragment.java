@@ -1,38 +1,55 @@
 package com.standard.first.fragment;
 
 import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.common.Constant;
 import com.example.common.RouterCommonPath;
+import com.example.common.adapter.GridImageChooseAdapter;
 import com.example.common.adapter.ImagePageAdapter;
 import com.example.common.base.BaseFragment;
 import com.example.common.dialog.ConfirmDialogFragment;
 import com.example.common.listener.OnPositiveClickListener;
+import com.example.common.sutils.utils.ResourceUtil;
+import com.example.common.widget.album.AlbumUtil;
 import com.example.common.widget.banner.CircleIndicator;
 import com.example.common.widget.banner.LoopViewPager;
+import com.example.common.widget.recycleview.SpacesItemDecoration;
 import com.standard.first.R;
 import com.standard.first.presenter.FirstPresenter;
 import com.standard.first.presenter.IFirstPresenter;
 import com.standard.llayjun.same.RouterSamePath;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.zhihu.matisse.Matisse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
+import static android.app.Activity.RESULT_OK;
+
 @Route(path = RouterSamePath.FIRST_FRAGMENT)
 public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirstPresenter.IFirstView, View.OnClickListener {
 
     private LoopViewPager loopViewPager;
     private CircleIndicator circleIndicator;
+
+    private RecyclerView mChoosePhotoRecycle;
+    private GridImageChooseAdapter mGridImageChooseAdapter;
+    private List<String> mAlbumList;
+    private int MAX_ALBUM_SIZE = 5;//最大选择张数
 
     @Nullable
     @Override
@@ -46,12 +63,14 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
         view.findViewById(R.id.button_dialog).setOnClickListener(this);
         loopViewPager = view.findViewById(R.id.loop_view_pager);
         circleIndicator = view.findViewById(R.id.circle_indicator);
+        mChoosePhotoRecycle = view.findViewById(R.id.recycle_choose_photo);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initBanner();
+        initChooseAlbum();
     }
 
     private void initBanner() {
@@ -63,6 +82,40 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
         loopViewPager.setAdapter(new ImagePageAdapter(urls));
         loopViewPager.setLooperPic(true);
         circleIndicator.setViewPager(loopViewPager);
+    }
+
+    private void initChooseAlbum() {
+        mAlbumList = new ArrayList<>();
+        mChoosePhotoRecycle.setLayoutManager(new GridLayoutManager(activity, 4));
+        mChoosePhotoRecycle.addItemDecoration(new SpacesItemDecoration(0, 0, ResourceUtil.getDimen(R.dimen.x20), 0));
+        mGridImageChooseAdapter = new GridImageChooseAdapter(activity, mAlbumList, MAX_ALBUM_SIZE);
+        mChoosePhotoRecycle.setAdapter(mGridImageChooseAdapter);
+        mGridImageChooseAdapter.setOnItemClickListener(new GridImageChooseAdapter.OnItemClickListener() {
+            @Override
+            public void onCommonItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onPickImageClick() {
+                AlbumUtil.ChooseAlbum(FirstFragment.this, 4);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) return;
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_CHOOSE:
+                List<Uri> uriList = Matisse.obtainResult(data);
+                for (Uri uri : uriList) {
+                    mAlbumList.add(String.valueOf(uri));
+                }
+                mGridImageChooseAdapter.notifyDataSetChanged();
+                break;
+        }
     }
 
     @Override

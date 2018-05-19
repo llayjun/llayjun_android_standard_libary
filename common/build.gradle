@@ -106,4 +106,6 @@ dependencies {
     api 'org.greenrobot:eventbus:3.1.1'
     // zxing
     api files('libs/core-3.2.1.jar')
+    // matisse
+    api 'com.zhihu.android:matisse:0.4.3'
 }

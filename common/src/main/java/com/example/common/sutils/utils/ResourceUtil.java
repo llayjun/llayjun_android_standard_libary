@@ -1,6 +1,8 @@
 package com.example.common.sutils.utils;
 
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 
 
 /**
@@ -76,6 +78,26 @@ public class ResourceUtil {
      */
     public static int getStyleByName(@Nullable String resName) {
         return getIdByName("style", resName);
+    }
+
+    public static Drawable getDrawable(int id) {
+        return SUtils.getApp().getResources().getDrawable(id);
+    }
+
+    public static int getColor(int id) {
+        return SUtils.getApp().getResources().getColor(id);
+    }
+
+    public static String getString(@StringRes int id) {
+        return SUtils.getApp().getResources().getString(id);
+    }
+
+    public static String getString(@StringRes int id, Object... formatArgs) {
+        return SUtils.getApp().getResources().getString(id, formatArgs);
+    }
+
+    public static int getDimen(int id) {
+        return SUtils.getApp().getResources().getDimensionPixelOffset(id);
     }
 
     /**
