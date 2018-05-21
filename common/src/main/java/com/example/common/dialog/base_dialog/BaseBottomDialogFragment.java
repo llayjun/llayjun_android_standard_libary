@@ -21,7 +21,7 @@ import com.example.common.R;
 /**
  * DialogBottomFragment 的基类，从底部弹出来
  */
-public abstract class BaseDialogBottomFragment extends DialogFragment {
+public abstract class BaseBottomDialogFragment extends DialogFragment {
     /* 默认的背景透明度 */
     private final float DEF_VISIBLE_ALPHA = 0.5f;
     /* 是否使用 dialog 的百分比尺寸 */

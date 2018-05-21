@@ -1,6 +1,7 @@
 package com.example.common.sutils.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -77,6 +78,13 @@ public class GlideUtil {
     //设置圆角图片
     public static void loadImageRound(Context mContext, String path, ImageView mImageView, int roundingRadius) {
         Glide.with(mContext).load(path)
+                .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(roundingRadius)))
+                .into(mImageView);
+    }
+
+    //设置圆角图片
+    public static void loadImageRound(Context mContext, Bitmap bitmap, ImageView mImageView, int roundingRadius) {
+        Glide.with(mContext).load(bitmap)
                 .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(roundingRadius)))
                 .into(mImageView);
     }

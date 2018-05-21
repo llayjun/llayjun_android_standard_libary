@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -19,10 +21,17 @@ import com.example.common.RouterCommonPath;
 import com.example.common.adapter.GridImageChooseAdapter;
 import com.example.common.adapter.ImagePageAdapter;
 import com.example.common.base.BaseFragment;
+import com.example.common.dialog.CameraOrChooseDialog;
 import com.example.common.dialog.ConfirmDialogFragment;
 import com.example.common.listener.OnPositiveClickListener;
+import com.example.common.message.MPreviewImageDelete;
+import com.example.common.sutils.utils.EventBusUtil;
+import com.example.common.sutils.utils.GlideUtil;
 import com.example.common.sutils.utils.ResourceUtil;
+import com.example.common.sutils.utils.io.FileUtil;
 import com.example.common.widget.album.AlbumUtil;
+import com.example.common.widget.album.CameraUtil;
+import com.example.common.widget.album.MClipImageGetBitmap;
 import com.example.common.widget.banner.CircleIndicator;
 import com.example.common.widget.banner.LoopViewPager;
 import com.example.common.widget.recycleview.SpacesItemDecoration;
@@ -33,6 +42,10 @@ import com.standard.llayjun.same.RouterSamePath;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +62,9 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
     private RecyclerView mChoosePhotoRecycle;
     private GridImageChooseAdapter mGridImageChooseAdapter;
     private List<String> mAlbumList;
-    private int MAX_ALBUM_SIZE = 5;//最大选择张数
+    private int MAX_ALBUM_SIZE = 4;//最大选择张数
+
+    private CameraOrChooseDialog mCameraOrChooseDialog;//拍照或者选图片dialog
 
     @Nullable
     @Override
@@ -93,14 +108,26 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
         mGridImageChooseAdapter.setOnItemClickListener(new GridImageChooseAdapter.OnItemClickListener() {
             @Override
             public void onCommonItemClick(View view, int position) {
-
+                ARouter.getInstance().build(RouterCommonPath.ROUTER_COMMON_PREVIEW_IMAGE)
+                        .withStringArrayList(Constant.EXTRA_COMMON_PREVIEW_IMAGE_LIST, (ArrayList<String>) mAlbumList)
+                        .withInt(Constant.EXTRA_COMMON_PREVIEW_IMAGE_POSITION, position)
+                        .withBoolean(Constant.EXTRA_COMMON_PREVIEW_IMAGE_LIST_CAN_DELETE, true)
+                        .navigation();
             }
 
             @Override
             public void onPickImageClick() {
-                AlbumUtil.ChooseAlbum(FirstFragment.this, 4);
+                if (null == mCameraOrChooseDialog)
+                    mCameraOrChooseDialog = new CameraOrChooseDialog(FirstFragment.this, MAX_ALBUM_SIZE);
+                mCameraOrChooseDialog.show(getChildFragmentManager(), "");
             }
         });
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onPreviewImageDeleteEvent(MPreviewImageDelete message) {
+        mAlbumList.remove(message.getPosition());
+        mGridImageChooseAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -113,6 +140,12 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
                 for (Uri uri : uriList) {
                     mAlbumList.add(String.valueOf(uri));
                 }
+                mGridImageChooseAdapter.notifyDataSetChanged();
+                break;
+            case Constant.REQUEST_CODE_TAKE_PHOTO:
+                File file = CameraUtil.getImageFile(CameraUtil.mImageCacheName);
+                String path = file.getAbsolutePath();
+                mAlbumList.add(path);
                 mGridImageChooseAdapter.notifyDataSetChanged();
                 break;
         }
@@ -164,4 +197,15 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
 
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBusUtil.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBusUtil.unregister(this);
+    }
 }
