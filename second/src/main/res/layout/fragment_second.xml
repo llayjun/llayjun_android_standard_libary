@@ -24,5 +24,18 @@
 
     </com.example.common.widget.viewgroup.SquareFrameLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x500"
+        android:orientation="vertical">
+
+        <com.example.common.widget.scalerecycleview.ScaleRecyclerView
+            android:id="@+id/speed_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

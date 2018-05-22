@@ -76,21 +76,21 @@ public class GlideUtil {
     }
 
     //设置圆角图片
-    public static void loadImageRound(Context mContext, String path, ImageView mImageView, int roundingRadius) {
+    public static void loadImageRoundCorner(Context mContext, String path, ImageView mImageView, int roundingRadius) {
         Glide.with(mContext).load(path)
                 .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(roundingRadius)))
                 .into(mImageView);
     }
 
     //设置圆角图片
-    public static void loadImageRound(Context mContext, Bitmap bitmap, ImageView mImageView, int roundingRadius) {
+    public static void loadImageRoundCorner(Context mContext, Bitmap bitmap, ImageView mImageView, int roundingRadius) {
         Glide.with(mContext).load(bitmap)
                 .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(roundingRadius)))
                 .into(mImageView);
     }
 
     //设置圆角图片跳过缓存
-    public static void loadImageRoundSkipCache(Context mContext, String path, ImageView mImageView, int roundingRadius) {
+    public static void loadImageRoundCornerSkipCache(Context mContext, String path, ImageView mImageView, int roundingRadius) {
         Glide.with(mContext).load(path)
                 .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(roundingRadius)).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true))
                 .into(mImageView);
