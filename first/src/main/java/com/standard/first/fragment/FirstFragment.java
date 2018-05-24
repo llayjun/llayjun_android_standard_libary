@@ -34,6 +34,7 @@ import com.standard.first.presenter.FirstPresenter;
 import com.standard.first.presenter.IFirstPresenter;
 import com.standard.llayjun.same.RouterSamePath;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tongju.share.util.ShareUtil;
 import com.zhihu.matisse.Matisse;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -73,6 +74,12 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements IFirs
         loopViewPager = view.findViewById(R.id.loop_view_pager);
         circleIndicator = view.findViewById(R.id.circle_indicator);
         mChoosePhotoRecycle = view.findViewById(R.id.recycle_choose_photo);
+        view.findViewById(R.id.button_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareUtil.showShare(activity);
+            }
+        });
     }
 
     @Override

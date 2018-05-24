@@ -49,6 +49,12 @@ android {
 
 }
 
+repositories {
+    maven {
+        url "http://mvn.mob.com/android"
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
@@ -58,4 +64,6 @@ dependencies {
     implementation project(':same')
     // scan qr code
     implementation project(':scan')
+    // mob share
+    implementation project(':share')
 }
