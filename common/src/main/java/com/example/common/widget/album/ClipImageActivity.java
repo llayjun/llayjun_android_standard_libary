@@ -61,7 +61,7 @@ public class ClipImageActivity extends BaseActivity implements View.OnClickListe
         if (id == R.id.iv_back) {
             finish();
         } else if (id == R.id.tv_use) {
-            Bitmap bitmap = mClipImageView.rectangleClip();
+            Bitmap bitmap = mClipImageView.roundCip();
             EventBusUtil.post(new MClipImageGetBitmap(bitmap));
             finish();
         }

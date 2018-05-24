@@ -444,7 +444,7 @@ public class ClipImageView extends ImageView implements View.OnTouchListener,
      *
      * @return
      */
-    public Bitmap clip() {
+    public Bitmap roundCip() {
         int width = this.getWidth();
         int height = this.getHeight();
         Bitmap bitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);

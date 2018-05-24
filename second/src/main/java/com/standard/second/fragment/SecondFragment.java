@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -18,13 +19,11 @@ import com.example.common.base.BaseFragment;
 import com.example.common.dialog.CameraOrChooseDialog;
 import com.example.common.sutils.utils.EventBusUtil;
 import com.example.common.sutils.utils.GlideUtil;
-import com.example.common.sutils.utils.ResourceUtil;
 import com.example.common.widget.album.CameraUtil;
 import com.example.common.widget.album.MClipImageGetBitmap;
 import com.example.common.widget.scalerecycleview.CardAdapter;
 import com.example.common.widget.scalerecycleview.CardScaleHelper;
 import com.example.common.widget.scalerecycleview.ScaleRecyclerView;
-import com.example.common.widget.view.SquareImageView;
 import com.standard.llayjun.same.RouterSamePath;
 import com.standard.second.R;
 import com.standard.second.presenter.ISecondPresenter;
@@ -40,12 +39,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 @Route(path = RouterSamePath.SECOND_FRAGMENT)
 public class SecondFragment extends BaseFragment<SecondPresenter> implements ISecondPresenter.ISecondView, View.OnClickListener {
 
-    private SquareImageView mClipIv;//裁剪后显示
+    private ImageView mClipIv;//裁剪后显示
     private CameraOrChooseDialog mCameraOrChooseDialog;//拍照或者选图片dialog
 
     private ScaleRecyclerView mScaleRecyclerView;
@@ -123,7 +121,7 @@ public class SecondFragment extends BaseFragment<SecondPresenter> implements ISe
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onClipImageGetBitmapEvent(MClipImageGetBitmap message) {
-        GlideUtil.loadImageRoundCorner(activity, message.getBitmap(), mClipIv, ResourceUtil.getDimen(R.dimen.x20));
+        GlideUtil.loadImageRound(activity, message.getBitmap(), mClipIv);
     }
 
     @Override

@@ -11,18 +11,18 @@
         android:layout_height="wrap_content"
         android:text="第三方分享" />
 
-    <com.example.common.widget.viewgroup.SquareFrameLayout
+    <FrameLayout
         android:layout_width="@dimen/x200"
         android:layout_height="@dimen/x200"
-        android:background="@drawable/shape_corner_stroke_dash"
+        android:background="@drawable/shape_round_stroke_dash"
         android:gravity="center">
 
-        <com.example.common.widget.view.SquareImageView
+        <ImageView
             android:id="@+id/clip_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </com.example.common.widget.viewgroup.SquareFrameLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

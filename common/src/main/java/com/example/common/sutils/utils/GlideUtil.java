@@ -68,6 +68,13 @@ public class GlideUtil {
                 .into(mImageView);
     }
 
+    //设置圆形图片
+    public static void loadImageRound(Context mContext, Bitmap bitmap, ImageView mImageView) {
+        Glide.with(mContext).load(bitmap)
+                .apply(RequestOptions.circleCropTransform())
+                .into(mImageView);
+    }
+
     //设置圆形图片跳过缓存
     public static void loadImageRoundSkipCache(Context mContext, String path, ImageView mImageView) {
         Glide.with(mContext).load(path)
